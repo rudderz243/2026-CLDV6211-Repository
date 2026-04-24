@@ -123,6 +123,18 @@ namespace DeleteConstraintExampleG2.Controllers
                 return NotFound();
             }
 
+            // checks the moduleStudents table to see if the module we are trying to delete is being taken
+            // by any students
+            bool hasEnrolledStudents = await _context.ModuleStudents.AnyAsync(ms =>ms.ModuleId == id);
+
+            // if there are enrolled students, we return an error message
+            if (hasEnrolledStudents) {
+                // write the error message 
+                ModelState.AddModelError("ModuleID", "There are students still linked to this module.");
+                // return the error
+                return ValidationProblem(ModelState);
+            }
+
             var @module = await _context.Modules
                 .FirstOrDefaultAsync(m => m.ModuleId == id);
             if (@module == null)
