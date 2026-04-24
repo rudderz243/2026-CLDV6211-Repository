@@ -9,119 +9,119 @@ using DeleteConstraintExampleG2.Models;
 
 namespace DeleteConstraintExampleG2.Controllers
 {
-    public class StudentsController : Controller
-    {
-        private readonly StudentG2Context _context;
+	public class StudentsController : Controller
+	{
+		private readonly StudentG2Context _context;
 
-        public StudentsController(StudentG2Context context)
-        {
-            _context = context;
-        }
+		public StudentsController(StudentG2Context context)
+		{
+			_context = context;
+		}
 
-        // GET: Students
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Students.ToListAsync());
-        }
+		// GET: Students
+		public async Task<IActionResult> Index()
+		{
+			return View(await _context.Students.ToListAsync());
+		}
 
-        // GET: Students/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+		// GET: Students/Details/5
+		public async Task<IActionResult> Details(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
-            var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.StudentId == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
+			var student = await _context.Students
+				.FirstOrDefaultAsync(m => m.StudentId == id);
+			if (student == null)
+			{
+				return NotFound();
+			}
 
-            return View(student);
-        }
+			return View(student);
+		}
 
-        // GET: Students/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+		// GET: Students/Create
+		public IActionResult Create()
+		{
+			return View();
+		}
 
-        // POST: Students/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,StudentName,StudentSurname,StudentDob")] Student student)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(student);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(student);
-        }
+		// POST: Students/Create
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Create([Bind("StudentId,StudentName,StudentSurname,StudentDob")] Student student)
+		{
+			if (ModelState.IsValid)
+			{
+				_context.Add(student);
+				await _context.SaveChangesAsync();
+				return RedirectToAction(nameof(Index));
+			}
+			return View(student);
+		}
 
-        // GET: Students/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+		// GET: Students/Edit/5
+		public async Task<IActionResult> Edit(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
-            var student = await _context.Students.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-            return View(student);
-        }
+			var student = await _context.Students.FindAsync(id);
+			if (student == null)
+			{
+				return NotFound();
+			}
+			return View(student);
+		}
 
-        // POST: Students/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,StudentName,StudentSurname,StudentDob")] Student student)
-        {
-            if (id != student.StudentId)
-            {
-                return NotFound();
-            }
+		// POST: Students/Edit/5
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Edit(int id, [Bind("StudentId,StudentName,StudentSurname,StudentDob")] Student student)
+		{
+			if (id != student.StudentId)
+			{
+				return NotFound();
+			}
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(student);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!StudentExists(student.StudentId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(student);
-        }
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					_context.Update(student);
+					await _context.SaveChangesAsync();
+				}
+				catch (DbUpdateConcurrencyException)
+				{
+					if (!StudentExists(student.StudentId))
+					{
+						return NotFound();
+					}
+					else
+					{
+						throw;
+					}
+				}
+				return RedirectToAction(nameof(Index));
+			}
+			return View(student);
+		}
 
-        // GET: Students/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+		// GET: Students/Delete/5
+		public async Task<IActionResult> Delete(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
 			// checks the moduleStudents table to see if the student we are trying to delete is taking
 			// any modules
@@ -137,33 +137,33 @@ namespace DeleteConstraintExampleG2.Controllers
 			}
 
 			var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.StudentId == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
+				.FirstOrDefaultAsync(m => m.StudentId == id);
+			if (student == null)
+			{
+				return NotFound();
+			}
 
-            return View(student);
-        }
+			return View(student);
+		}
 
-        // POST: Students/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var student = await _context.Students.FindAsync(id);
-            if (student != null)
-            {
-                _context.Students.Remove(student);
-            }
+		// POST: Students/Delete/5
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteConfirmed(int id)
+		{
+			var student = await _context.Students.FindAsync(id);
+			if (student != null)
+			{
+				_context.Students.Remove(student);
+			}
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+			await _context.SaveChangesAsync();
+			return RedirectToAction(nameof(Index));
+		}
 
-        private bool StudentExists(int id)
-        {
-            return _context.Students.Any(e => e.StudentId == id);
-        }
-    }
+		private bool StudentExists(int id)
+		{
+			return _context.Students.Any(e => e.StudentId == id);
+		}
+	}
 }
