@@ -1,0 +1,53 @@
+﻿@model CarRentalG2.Models.Car
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Car</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CarMake" class="control-label"></label>
+                <input asp-for="CarMake" class="form-control" />
+                <span asp-validation-for="CarMake" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarModel" class="control-label"></label>
+                <input asp-for="CarModel" class="form-control" />
+                <span asp-validation-for="CarModel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarYear" class="control-label"></label>
+                <input asp-for="CarYear" class="form-control" />
+                <span asp-validation-for="CarYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarColourway" class="control-label"></label>
+                <input asp-for="CarColourway" class="form-control" />
+                <span asp-validation-for="CarColourway" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarVin" class="control-label"></label>
+                <input asp-for="CarVin" class="form-control" />
+                <span asp-validation-for="CarVin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

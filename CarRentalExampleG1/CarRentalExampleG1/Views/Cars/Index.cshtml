@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CarRentalExampleG1.Models.Car>
+
+@{
+    // the name of the page in the TAB
+    // kinda like the <title> tag in HTML
+    ViewData["Title"] = "View All Cars";
+}
+
+
+<h1>View All Cars</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarMake)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarColourway)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarVin)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarMake)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarColourway)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarVin)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CarId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CarId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CarId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

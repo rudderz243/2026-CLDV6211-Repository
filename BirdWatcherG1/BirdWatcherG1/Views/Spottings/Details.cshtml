@@ -1,0 +1,45 @@
+﻿@model BirdWatcherG1.Models.Spotting
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Spotting</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SpottingDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SpottingDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TimeSeen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TimeSeen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (string.IsNullOrEmpty(@Model.ImageUrl))
+            {
+                <!-- if there is nothing in ImageURL - show the error -->
+                <span>No Image.</span>
+            }
+            else
+            {
+                <!-- otherise, show the image from the database -->
+                <img src="@Model.ImageUrl" style="width:100px; height:auto;" />
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.SpottingId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

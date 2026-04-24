@@ -1,0 +1,40 @@
+﻿@model BirdWatcherG1.Models.Spotting
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Spotting</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <!-- we modify the form encoding type (enctype) to allow for image and file data -->
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SpottingDescription" class="control-label"></label>
+                <input asp-for="SpottingDescription" class="form-control" />
+                <span asp-validation-for="SpottingDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+              <!--  <input asp-for="ImageUrl" class="form-control" /> -->
+                <input type="file" name="imageFile" class="form-control"/>
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

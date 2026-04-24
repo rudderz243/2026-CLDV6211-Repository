@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BirdWatcherG1.Models.Spotting>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SpottingDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeSeen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpottingDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeSeen)
+            </td>
+            <td>
+                    @if (string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <!-- if there is nothing in ImageURL - show the error -->
+                        <span>No Image.</span>
+                    }
+                    else
+                    {
+                        <!-- otherise, show the image from the database -->
+                        <img src="@item.ImageUrl" style="width:100px; height:auto;"/>
+                    }
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SpottingId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SpottingId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SpottingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

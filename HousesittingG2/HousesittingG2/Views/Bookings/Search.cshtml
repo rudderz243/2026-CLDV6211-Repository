@@ -1,0 +1,85 @@
+﻿@model IEnumerable<HousesittingG2.Models.Booking>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search for Bookings...</h1>
+
+<!-- we firstly need to create a new web form component to hold our search items, and buttons -->
+<form asp-action="Search" method="get">
+    <!-- a <div> is a container that holds other items, and passes its formatting and styling to them -->
+    <div class="form-actions no-color">
+        <p>
+            Customer:
+            <!-- for customer, we use a <select> item, which is a dropdown list. we pass the customer info to the 
+                 dropdown list from the Controller in a "Search" method -->
+            <select name="searchCustId" asp-items="ViewBag.CustList">
+                <!-- we also add a default option to display when no customer is selected -->
+                <option value="">All Customers</option>
+            </select>
+
+            Start Date:
+            <!-- for start date, we use a basic <input> component of type date, which allows the user to select the
+                 date on a small little calendar -->
+            <input type="date" name="searchStartDate" value="@ViewData["CurrentStartDate"]"/>
+
+            End Date:
+            <!-- we do the same for end date (copy paste) -->
+            <input type="date" name="searchEndDate" value="@ViewData["CurrentEndDate"]" />
+
+            <!-- this input is for a submit button, that passes the search attributes to the controller -->
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <!-- this link points back at this page, it just refreshes the page to clear the search -->
+            <a asp-action="Search">Clear Search</a>
+        </p>
+    </div>
+</form>
+
+<!-- if there are search results, then display them in the format we are used to -->
+@if (Model != null && Model.Any())
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cust)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                <!-- we change this to FullName to display the correct information -->
+                @Html.DisplayFor(modelItem => item.Cust.FullName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BookingId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BookingId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BookingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+} else
+{
+    <!-- if there are no bookings in the system, or if no bookings match the search, display an error 
+         it is important to do error handling in our code, as you WILL lose marks if your app crashes/breaks.
+    -->
+    <p>No bookings found within the given search parameters.</p>
+}
