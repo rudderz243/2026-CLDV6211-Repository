@@ -1,1 +1,0 @@
-# LibraryExampleG1

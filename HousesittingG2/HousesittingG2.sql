@@ -1,0 +1,20 @@
+CREATE DATABASE HousesittingG2;
+
+USE HousesittingG2;
+
+CREATE TABLE Customers (
+	CustID INT PRIMARY KEY IDENTITY(1,1),
+	FullName NVARCHAR(200) NOT NULL,
+	ContactNumber NVARCHAR(20) NOT NULL,
+	EmergencyContact NVARCHAR(200) NOT NULL,
+	EmergencyNumber NVARCHAR(20) NOT NULL,
+	PhysicalAddress NVARCHAR(250) NOT NULL
+);
+
+CREATE TABLE Bookings (
+	BookingID INT PRIMARY KEY IDENTITY(1,1),
+	CustID INT NOT NULL,
+	StartDate DATETIME NOT NULL,
+	EndDate DATETIME NOT NULL,
+	CONSTRAINT FK_Customers_Bookings FOREIGN KEY (CustID) REFERENCES Customers (CustID)
+);

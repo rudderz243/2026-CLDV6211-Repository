@@ -1,3 +1,6 @@
+using DeleteConstraintExampleG2.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace DeleteConstraintExampleG2
 {
 	public class Program
@@ -8,6 +11,9 @@ namespace DeleteConstraintExampleG2
 
 			// Add services to the container.
 			builder.Services.AddControllersWithViews();
+
+			builder.Services.AddDbContext<StudentG2Context>(options =>
+			options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
 
 			var app = builder.Build();
 
