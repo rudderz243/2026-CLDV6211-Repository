@@ -8,14 +8,15 @@ All projects target **.NET 10** and use **Entity Framework Core** with a local S
 
 ## Project Index
 
-| Date       | Project                   | Covers                               |
-| ---------- | ------------------------- | ------------------------------------ |
-| 2026-02-26 | CarRentalExample          | SQL, EF Core scaffolding, CRUD       |
-| 2026-03-04 | LibraryExample            | SQL, relational design, CRUD         |
-| 2026-03-06 | DockerExample             | Containerisation, Dockerfile, Docker |
-| 2026-03-16 | BirdWatcher               | Azure Blob Storage, image upload     |
-| 2026-04-01 | HouseSitting              | Double-booking prevention, search    |
-| 2026-04-24 | DeleteConstraintExample   | FK delete constraints, cascade rules |
+| Date       | Project                  | Covers                               |
+| ---------- | ------------------------ | ------------------------------------ |
+| 2026-02-26 | CarRentalExample         | SQL, EF Core scaffolding, CRUD       |
+| 2026-03-04 | LibraryExample           | SQL, relational design, CRUD         |
+| 2026-03-06 | DockerExample            | Containerisation, Dockerfile, Docker |
+| 2026-03-16 | BirdWatcher              | Azure Blob Storage, image upload     |
+| 2026-04-01 | HouseSitting             | Double-booking prevention, search    |
+| 2026-04-24 | DeleteConstraintExample  | FK delete constraints, cascade rules |
+| 2026-05-13 | Part 2 Recap (Library 2) | constraints                          |
 
 Each project has its own `README.md` with setup instructions, relevant documentation links, and a license summary.
 
