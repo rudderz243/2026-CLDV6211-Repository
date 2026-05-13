@@ -131,9 +131,11 @@ namespace DeleteConstraintExampleG2.Controllers
 			if (hasEnrolledStudents)
 			{
 				// write the error message 
-				ModelState.AddModelError("StudentID", "There are modules still linked to this student.");
-				// return the error
-				return ValidationProblem(ModelState);
+				//ModelState.AddModelError("StudentID", "There are modules still linked to this student.");
+				//// return the error
+				//return ValidationProblem(ModelState);
+				TempData["ErrorMessage"] = "This student cannot be deleted because they are enrolled in one or more modules.";
+				return RedirectToAction(nameof(Index));
 			}
 
 			var student = await _context.Students
