@@ -3,12 +3,40 @@
 @{
     ViewData["Title"] = "Index";
 }
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
 
 <h1>Index</h1>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Customer:
+            <select name="searchCustId" asp-items="ViewBag.CustList" class="form-select">
+                <option value="">---All---</option>
+            </select>
+
+            Book:
+            <select name="searchBookId" asp-items="ViewBag.BookList" class="form-select">
+                <option value="">---All---</option>
+            </select>
+
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <a asp-action="Index">Clear Search</a>
+        </p>
+    </div>
+</form>
+
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@if (Model.Any() && Model != null) {
 <table class="table">
     <thead>
         <tr>
@@ -51,3 +79,8 @@
 }
     </tbody>
 </table>
+} else {
+    <p>
+        Selected search parameters returned no results, or the database contains no records.
+    </p>
+}
